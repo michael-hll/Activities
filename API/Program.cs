@@ -1,6 +1,7 @@
 using Persistence;
 using Microsoft.EntityFrameworkCore;
 using API.Extensions;
+using API.Middleware;
 //using Microsoft.EntityFrameworkCore;
 // create Kestrel Server as the host
 // and read appsettings.json & appsettings.Development.json
@@ -15,6 +16,7 @@ var app = builder.Build();
 /*.................................*/
 // Configure the HTTP request pipeline.
 // we add middleware in this section
+app.UseMiddleware<ExceptionMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
